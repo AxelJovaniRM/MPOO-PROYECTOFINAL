@@ -286,22 +286,94 @@ class Main {
               break;
 
               case "6":
-              System.out.println("Ingresa el numero de trabajador (1-100) que deseas editar");
-              numTrabajador = leer1Scanner.nextInt();
-              numTrabajador--;
-              System.out.println(trabajadores[numTrabajador]);
-              System.out.println("Ingresa los años de servicio actualizados");
-              int AñosdeServ= leer1Scanner.nextInt();
-              trabajadores[numTrabajador].setAñosDeServ(AñosdeServ);
-              System.out.println(trabajadores[numTrabajador]);
+              
+              Except="";
+              verifica = false;
+              do{
+                try{
+                  System.out.println("Ingresa el numero de trabajador (1-"+NumerodeTrabajadores+") que deseas editar");
+                  sActualiza=leer.nextLine();
+                  actualiza=Integer.parseInt(sActualiza);
+                  
+                    if(actualiza>0 && actualiza<=NumerodeTrabajadores){
+                      numTrabajador = actualiza-1;
+                      System.out.println("\n"+trabajadores[numTrabajador]);
+                      System.out.println("\nIngresa los años de servicio actualizados\n"); 
+                      do{
+                        Except="";
+                        verifica = false;
+                        try{
+                          sActualiza=leer.nextLine();
+                          int AñosdeServ =Integer.parseInt(sActualiza);
+                          int Edad1=trabajadores[numTrabajador].getEdad();
+                          Edad1= Edad1-18;                          
+                          if(AñosdeServ>=0 && AñosdeServ<Edad1){
+                            trabajadores[numTrabajador].setAñosDeServ(AñosdeServ);
+                            System.out.println(trabajadores[numTrabajador]);
+                            Except = "Se Visualizo";
+                          }else{
+                            System.out.println("\nAños de servivio no invalidos\nIngresa Años de servicio correctos\n");
+                          }
+                        }catch(Exception e){
+                          System.out.println("\nAños de servivio no invalidos\nIngresa Años de servicio correctos\n");
+                          }  
+                          verifica = Except.equals("Se Visualizo");
+                      }while(verifica != true);                 
+                    }else{
+                      System.out.println("\nNumero fuera de rango\n");
+                    }
+                  }catch(Exception e){
+                    System.out.println("\nNumero de trabajador invalido\n");
+                  }  
+              }while(verifica != true);                   
               break;
 
-              case "7":  
+              case "7":
+              /*
+              Except="";
+              verifica = false;
+              do{
+                try{
+                  System.out.println("Ingresa el numero de trabajador (1-"+NumerodeTrabajadores+") que deseas editar");
+                  sActualiza=leer.nextLine();
+                  actualiza=Integer.parseInt(sActualiza);
+                  
+                    if(actualiza>0 && actualiza<=NumerodeTrabajadores){
+                      numTrabajador = actualiza-1;
+                      System.out.println("\n"+trabajadores[numTrabajador]);
+                      System.out.println("\nIngresa la nueva calle");
+                        leer1Scanner.nextLine();
+                        String calle=leer1Scanner.nextLine();
+                        trabajadores[numTrabajador].getDireccion().setCalle(calle);
+                      System.out.println("\nIngresa el nuevo numero exterior");
+                        String NumExt=leer1Scanner.nextLine();
+                        trabajadores[numTrabajador].getDireccion().setNumeroExterior(NumExt);
+                      System.out.println("\nIngresa el nuevo municipio");
+                        String Municipio=leer1Scanner.nextLine();
+                        trabajadores[numTrabajador].getDireccion().setMunicipio(Municipio); 
+                      System.out.println("\nIngresa el nuevo código postal");
+                        String CoPostal=leer1Scanner.nextLine();
+                        trabajadores[numTrabajador].getDireccion().setCoPostal(CoPostal);
+                      System.out.println("\nIngresa el nuevo estado");
+                        String Estado=leer1Scanner.nextLine();
+                        trabajadores[numTrabajador].getDireccion().setEstado(Estado); 
+                      System.out.println("Direccion actualizada"+trabajadores[numTrabajador]);
+                      Except = "Se Visualizo";
+                    }else{
+                      System.out.println("Numero fuera de rango");
+                    }
+                  }catch(Exception e){
+                    System.out.println("Numero de trabajador invalido");
+                  }  
+                verifica = Except.equals("Se Visualizo");
+              }while(verifica != true);
+
+              */  
               System.out.println("Ingresa el numero de trabajador (1-100) que deseas editar");
               numTrabajador = leer1Scanner.nextInt();
               numTrabajador--;
-              System.out.println(trabajadores[numTrabajador]);
-              System.out.println("Ingresa la nueva calle");
+              System.out.println("\n"+trabajadores[numTrabajador]);
+              System.out.println("\nIngresa la nueva calle");
                 leer1Scanner.nextLine();
                 String calle=leer1Scanner.nextLine();
                 trabajadores[numTrabajador].getDireccion().setCalle(calle);
