@@ -4,8 +4,9 @@ import java.io.BufferedWriter;
 import java.io.PrintWriter;
 import java.util.Scanner;
 import java.util.Formatter;
+import java.lang.ArrayIndexOutOfBoundsException;
 
-public class Main {
+class Main {
   public static void main(String[] args) {
 
   
@@ -16,8 +17,7 @@ public class Main {
     boolean verifica;
     int numTrabajador;
     int NumerodeTrabajadores=100;                                                  //Cambia para agregar mas o menos trabajadores
-    Trabajador[] trabajadores= new Trabajador[NumerodeTrabajadores];
-    NumerodeTrabajadores=100;     
+    Trabajador[] trabajadores= new Trabajador[NumerodeTrabajadores];    
     for(int i=0;i<NumerodeTrabajadores;i++){
       trabajadores[i]=new Trabajador(i);
     }
@@ -93,14 +93,19 @@ public class Main {
           do{
           opcion = leer.nextLine();
             if(opcion.equals("1")){
-            System.out.println("1. Crear un trabajador");
-            NumerodeTrabajadores= NumerodeTrabajadores+1;
-            System.out.println("Se creo un nuevo trabajador");
-            trabajadores[NumerodeTrabajadores-1]=new Trabajador(NumerodeTrabajadores-1);
-            trabajadores[NumerodeTrabajadores-1].ImprimirTrabajador();
+              try{
+                System.out.println("1. Crear un trabajador");
+                NumerodeTrabajadores= NumerodeTrabajadores+1;
+                System.out.println("Se creo un nuevo trabajador");
+                trabajadores[NumerodeTrabajadores-1]=new Trabajador(NumerodeTrabajadores-1);
+                trabajadores[NumerodeTrabajadores-1].ImprimirTrabajador();
+              }catch(ArrayIndexOutOfBoundsException e){
+                System.out.println("Error: "+e.getMessage());
+              }
+            
 
           }else if(opcion.equals("2")){
-            System.out.println("2. Actualizar un trabajador");
+            System.out.println("\n2. Actualizar un trabajador");
             System.out.println("Que deseas editar?");
             System.out.println("1.Nombre");
             System.out.println("2.Apellido Materno");
@@ -113,41 +118,132 @@ public class Main {
             option = leer1Scanner.nextLine();
             switch(option){
               case "1":
-              System.out.println("Ingresa el numero de trabajador (1-"+NumerodeTrabajadores+") que deseas editar");
-             numTrabajador = leer1Scanner.nextInt();
-             
-             System.out.println(trabajadores[numTrabajador]);
-              System.out.println("Ingresa el nuevo nombre");
-              leer1Scanner.nextLine();
-              String nombre = leer1Scanner.nextLine();
-              trabajadores[numTrabajador].setNombre(nombre);
-              System.out.println(trabajadores[numTrabajador]);
-              
+              Except="";
+              verifica = false;
+              do{
+                try{
+
+                  System.out.println("Ingresa el numero de trabajador (1-"+NumerodeTrabajadores+") que deseas editar");
+                  sActualiza=leer.nextLine();
+                  actualiza=Integer.parseInt(sActualiza);
+                  
+                    if(actualiza>0 && actualiza<=NumerodeTrabajadores){
+                      numTrabajador = actualiza-1;
+                      System.out.println("\n"+trabajadores[numTrabajador]);
+                      System.out.println("\nIngresa el nuevo nombre\n");
+                      String nombre = leer1Scanner.nextLine();
+                      trabajadores[numTrabajador].setNombre(nombre);
+                      System.out.println(trabajadores[numTrabajador]);
+                      Except = "Se Visualizo";
+                    }else{
+                      System.out.println("Numero fuera de rango");
+                    }
+                  }catch(Exception e){
+                    System.out.println("Numero de trabajador invalido");
+                  }  
+                verifica = Except.equals("Se Visualizo");
+              }while(verifica != true);
               break;
 
               case "2":
-             System.out.println("Ingresa el numero de trabajador (1-100) que deseas editar");
-             numTrabajador = leer1Scanner.nextInt();
-             numTrabajador--;
-             System.out.println(trabajadores[numTrabajador]);
-              System.out.println("Ingresa el nuevo Apellido Materno");
-              String ApellidoM = leer1Scanner.nextLine();
-              trabajadores[numTrabajador].setApellidoM(ApellidoM);
-              System.out.println(trabajadores[numTrabajador]);
+              Except="";
+              verifica = false;
+              do{
+                try{
+                  System.out.println("Ingresa el numero de trabajador (1-"+NumerodeTrabajadores+") que deseas editar");
+                  sActualiza=leer.nextLine();
+                  actualiza=Integer.parseInt(sActualiza);
+                  
+                    if(actualiza>0 && actualiza<=NumerodeTrabajadores){
+                      numTrabajador = actualiza-1;
+                      System.out.println("\n"+trabajadores[numTrabajador]);
+                      System.out.println("\nIngresa el nuevo Apellido Materno\n");
+                      String ApellidoM = leer1Scanner.nextLine();
+                      trabajadores[numTrabajador].setApellidoM(ApellidoM);
+                      System.out.println(trabajadores[numTrabajador]);
+                      Except = "Se Visualizo";
+                    }else{
+                      System.out.println("Numero fuera de rango");
+                    }
+                  }catch(Exception e){
+                    System.out.println("Numero de trabajador invalido");
+                  }  
+                verifica = Except.equals("Se Visualizo");
+              }while(verifica != true);
+
               break;
 
               case "3":
-            System.out.println("Ingresa el numero de trabajador (1-100) que deseas editar");
-            numTrabajador = leer1Scanner.nextInt();
-            numTrabajador--;
-            System.out.println(trabajadores[numTrabajador]);
-              System.out.println("Ingresa el nuevo Apellido Paterno");
-              String ApellidoP = leer1Scanner.nextLine();
-              trabajadores[numTrabajador].setApellidoP(ApellidoP);
-              System.out.println(trabajadores[numTrabajador]);
+              Except="";
+              verifica = false;
+              do{
+                try{
+                  System.out.println("Ingresa el numero de trabajador (1-"+NumerodeTrabajadores+") que deseas editar");
+                  sActualiza=leer.nextLine();
+                  actualiza=Integer.parseInt(sActualiza);
+                  
+                    if(actualiza>0 && actualiza<=NumerodeTrabajadores){
+                      numTrabajador = actualiza-1;
+                      System.out.println("\n"+trabajadores[numTrabajador]);
+                      System.out.println("\nIngresa el nuevo Apellido Paterno\n");
+                      String ApellidoP = leer1Scanner.nextLine();
+                      trabajadores[numTrabajador].setApellidoP(ApellidoP);
+                      System.out.println(trabajadores[numTrabajador]);
+                      Except = "Se Visualizo";
+                    }else{
+                      System.out.println("Numero fuera de rango");
+                    }
+                  }catch(Exception e){
+                    System.out.println("Numero de trabajador invalido");
+                  }  
+                verifica = Except.equals("Se Visualizo");
+              }while(verifica != true);
+
               break;
               
               case "4":
+              /*
+              Except="";
+              verifica = false;
+              do{
+                try{
+                  System.out.println("Ingresa el numero de trabajador (1-"+NumerodeTrabajadores+") que deseas editar");
+                  sActualiza=leer.nextLine();
+                  actualiza=Integer.parseInt(sActualiza);
+                  
+                    if(actualiza>0 && actualiza<=NumerodeTrabajadores){
+                      numTrabajador = actualiza-1;
+                      System.out.println("\n"+trabajadores[numTrabajador]);
+                      System.out.println("\nIngresa la nueva edad del trabajador\n"); 
+                      do{
+
+                        try{
+                          sActualiza=leer.nextLine();
+                          int edad =Integer.parseInt(sActualiza);
+                          if(edad>=18 && edad<=55){
+                            trabajadores[numTrabajador].setEdad(Edad);
+                            System.out.println(trabajadores[numTrabajador]);
+                            Except = "Se Visualizo";
+                          }else{
+                            System.out.println("Edad no valida");
+                          }
+                        }catch(Exception e){
+                          System.out.println("Numero de trabajador invalido");
+                          }  
+                          verifica = Except.equals("Se Visualizo");
+                      }while(verifica != true);  
+                      
+                      
+                    }else{
+                      System.out.println("Numero fuera de rango");
+                    }
+                  }catch(Exception e){
+                    System.out.println("Numero de trabajador invalido");
+                  }  
+                //verifica = Except.equals("Se Visualizo");
+              }while(verifica != true);
+
+              */
               System.out.println("Ingresa el numero de trabajador (1-100) que deseas editar");
               numTrabajador = leer1Scanner.nextInt();
               numTrabajador--;
@@ -310,7 +406,7 @@ public class Main {
     }while(verifica!=true);
     System.out.println("El programa termino, gracias");
 
-        try{//Apartir de aqui todo lo de abajo es para crear el csv
+        try{
       FileWriter BaseDeDatos= new FileWriter("BaseDeDatos.csv");
       BufferedWriter bw= new BufferedWriter(BaseDeDatos);
       PrintWriter Salida =new PrintWriter(bw);
@@ -325,6 +421,8 @@ public class Main {
       Salida.close();
     }catch (IOException ex){
       System.out.println(ex.getMessage());
+    }catch(ArrayIndexOutOfBoundsException e){
+      System.out.println("Error: "+e.getMessage());
     }
   
   }
