@@ -8,8 +8,7 @@ import java.lang.ArrayIndexOutOfBoundsException;
 
 class Main {
   public static void main(String[] args) {
-
-  
+    int tamañoArr=0;
     String Formato;
     String opcion="";
     String Except="";
@@ -329,7 +328,6 @@ class Main {
               break;
 
               case "7":
-              /*
               Except="";
               verifica = false;
               do{
@@ -342,7 +340,6 @@ class Main {
                       numTrabajador = actualiza-1;
                       System.out.println("\n"+trabajadores[numTrabajador]);
                       System.out.println("\nIngresa la nueva calle");
-                        leer1Scanner.nextLine();
                         String calle=leer1Scanner.nextLine();
                         trabajadores[numTrabajador].getDireccion().setCalle(calle);
                       System.out.println("\nIngresa el nuevo numero exterior");
@@ -368,53 +365,85 @@ class Main {
                 verifica = Except.equals("Se Visualizo");
               }while(verifica != true);
 
-              */  
-              System.out.println("Ingresa el numero de trabajador (1-100) que deseas editar");
-              numTrabajador = leer1Scanner.nextInt();
-              numTrabajador--;
-              System.out.println("\n"+trabajadores[numTrabajador]);
-              System.out.println("\nIngresa la nueva calle");
-                leer1Scanner.nextLine();
-                String calle=leer1Scanner.nextLine();
-                trabajadores[numTrabajador].getDireccion().setCalle(calle);
-              System.out.println("Ingresa el nuevo numero exterior");
-                String NumExt=leer1Scanner.nextLine();
-                trabajadores[numTrabajador].getDireccion().setNumeroExterior(NumExt);
-              System.out.println("Ingresa el nuevo municipio");
-                String Municipio=leer1Scanner.nextLine();
-                trabajadores[numTrabajador].getDireccion().setMunicipio(Municipio); 
-              System.out.println("Ingresa el nuevo código postal");
-                String CoPostal=leer1Scanner.nextLine();
-                trabajadores[numTrabajador].getDireccion().setCoPostal(CoPostal);
-              System.out.println("Ingresa el nuevo estado");
-                String Estado=leer1Scanner.nextLine();
-                trabajadores[numTrabajador].getDireccion().setEstado(Estado); 
-              System.out.println("Direccion actualizada"+trabajadores[numTrabajador]);
               break;
               case "8":
-                System.out.println("Ingresa el numero de trabajador que deseas editar");
-                 numTrabajador = leer1Scanner.nextInt();
-                for(int f=0;f<trabajadores[numTrabajador].getTotalDeProyectos();f++){
-                 System.out.println(f+1+trabajadores[numTrabajador].proyectos[f].EscribirProyecto());
-                 }
-                System.out.println("Ingresa el numero de proyecto que deseas editar");
-                leer1Scanner.nextLine();
-                int numProyecto = leer1Scanner.nextInt();
-              numProyecto--;
-            System.out.println("Ingresa el nuevo nombre del proyecto");
-            leer1Scanner.nextLine();
-            String proyecto = leer1Scanner.nextLine();
-            trabajadores[numTrabajador].proyectos[numProyecto].setNombreProyecto(proyecto);
-            System.out.println("Ingresa el nuevo numero de proyecto");
-            int numPro = leer1Scanner.nextInt();
-            numPro--;
-            trabajadores[numTrabajador].proyectos[numProyecto].setNumProyecto(numPro-1);
-            System.out.println("Ingresa el nuevo status de proyecto");
-            leer1Scanner.nextLine();
-            proyecto = leer1Scanner.nextLine();
-            trabajadores[numTrabajador].proyectos[numProyecto].setEstatus(proyecto);
-            System.out.println(trabajadores[numTrabajador].proyectos[numProyecto].EscribirProyecto());
-            
+              int count=0;
+              int tot=0;
+              numTrabajador=0;
+              int numProyecto=0;
+              Except="";
+              String Except1="";
+              verifica = false;
+              do{
+                try{
+                  System.out.println("Ingresa el numero de trabajador (1-"+NumerodeTrabajadores+") que deseas editar");
+                  sActualiza=leer.nextLine();
+                  actualiza=Integer.parseInt(sActualiza);  
+                  numTrabajador = actualiza; 
+                  numTrabajador--; 
+                    if(actualiza>0 && actualiza<=NumerodeTrabajadores){
+                      for(int f=0;f<trabajadores[numTrabajador].getTotalDeProyectos();f++){
+                      System.out.println(f+1+trabajadores[numTrabajador].proyectos[f].EscribirProyecto());
+                      }
+                      do{
+                        Except="";
+                        verifica = false;
+                        
+                        try{
+                          System.out.println("Ingresa el numero de proyecto que deseas editar");
+                          sActualiza=leer.nextLine();
+                          actualiza=Integer.parseInt(sActualiza);
+                          tot=trabajadores[numTrabajador].getTotalDeProyectos();
+                          if(actualiza>0 && actualiza<=tot){
+                            numProyecto=actualiza-1;  
+                            Except = "valido";
+                          }else{
+                            System.out.println("Numero de proyecto no valido");
+                          }
+    
+                        }catch(Exception e){
+                          System.out.println("Numero de proyecto invalido");
+
+                        }
+                          verifica = Except.equals("valido");
+                      }while(verifica!=true);
+                      System.out.println("Ingresa el nuevo nombre del proyecto");
+                      String proyecto = leer1Scanner.nextLine();
+                      trabajadores[numTrabajador].proyectos[numProyecto].setNombreProyecto(proyecto);
+
+                      do{
+                        Except="";
+                        verifica = true;
+                        try{
+                          System.out.println("Ingresa el nuevo numero de proyecto 1-50");
+                          sActualiza=leer.nextLine();
+                          actualiza=Integer.parseInt(sActualiza);
+                          int numPro=actualiza-1;
+                          if(numPro>0 && numPro<=50){
+                            trabajadores[numTrabajador].proyectos[numProyecto].setNumProyecto(numPro-1);
+                            Except = "Se Visualizo";
+                          }else{
+                            System.out.println("Numero de proyecto invalido");
+                          }                           
+                        }catch(Exception e){
+                          System.out.println("Numero de proyecto invalido");
+                          Except = "invalido";
+                        }  
+                        verifica =Except.equals("Se Visualizo");
+                      }while(verifica!=true);
+
+                      System.out.println("Ingresa el nuevo status de proyecto: Historico o Vigente");
+                      proyecto = leer1Scanner.nextLine();
+                      trabajadores[numTrabajador].proyectos[numProyecto].setEstatus(proyecto);
+                      System.out.println(trabajadores[numTrabajador].proyectos[numProyecto].EscribirProyecto());
+                      count=1;
+                    }else{
+                      System.out.println("Numero fuera de rango");
+                    }
+                  }catch(Exception e){
+                    System.out.println("Numero de trabajador invalido");
+                  }  
+              }while(count!=1);               
               break;
               default: System.out.println("la opcion no existe");
             
@@ -515,7 +544,6 @@ class Main {
       System.out.println(ex.getMessage());
     }catch(ArrayIndexOutOfBoundsException e){
       System.out.println("Error: "+e.getMessage());
-    }
-  
+    } 
   }
 }
