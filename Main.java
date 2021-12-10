@@ -202,7 +202,7 @@ class Main {
               break;
               
               case "4":
-              /*
+              
               Except="";
               verifica = false;
               do{
@@ -214,55 +214,75 @@ class Main {
                     if(actualiza>0 && actualiza<=NumerodeTrabajadores){
                       numTrabajador = actualiza-1;
                       System.out.println("\n"+trabajadores[numTrabajador]);
-                      System.out.println("\nIngresa la nueva edad del trabajador\n"); 
+                      System.out.println("\nIngresa la nueva edad del trabajador en el rango 18-55 años\n"); 
                       do{
-
+                        Except="";
+                        verifica = false;
                         try{
                           sActualiza=leer.nextLine();
                           int edad =Integer.parseInt(sActualiza);
                           if(edad>=18 && edad<=55){
-                            trabajadores[numTrabajador].setEdad(Edad);
+                            trabajadores[numTrabajador].setEdad(edad);
                             System.out.println(trabajadores[numTrabajador]);
                             Except = "Se Visualizo";
                           }else{
-                            System.out.println("Edad no valida");
+                            System.out.println("\nEdad no valida\nIngrese una edad valida\n");
                           }
                         }catch(Exception e){
-                          System.out.println("Numero de trabajador invalido");
+                          System.out.println("\nNumero de trabajador invalido\n");
                           }  
                           verifica = Except.equals("Se Visualizo");
                       }while(verifica != true);  
                       
                       
                     }else{
-                      System.out.println("Numero fuera de rango");
+                      System.out.println("\nNumero fuera de rango\n");
                     }
                   }catch(Exception e){
-                    System.out.println("Numero de trabajador invalido");
+                    System.out.println("\nNumero de trabajador invalido\n");
                   }  
-                //verifica = Except.equals("Se Visualizo");
               }while(verifica != true);
 
-              */
-              System.out.println("Ingresa el numero de trabajador (1-100) que deseas editar");
-              numTrabajador = leer1Scanner.nextInt();
-              numTrabajador--;
-              System.out.println(trabajadores[numTrabajador]);
-              System.out.println("Ingresa la nueva edad del trabajador");
-              int Edad = leer1Scanner.nextInt();
-              trabajadores[numTrabajador].setEdad(Edad);
-              System.out.println(trabajadores[numTrabajador]);
               break;
               
               case "5":
-              System.out.println("Ingresa el numero de trabajador (1-100) que deseas editar");
-              numTrabajador = leer1Scanner.nextInt();
-              numTrabajador--;
-              System.out.println(trabajadores[numTrabajador]);
-              System.out.println("Ingresa el nuevo numero del trabajador");
-              int NumerodeTrabajador = leer1Scanner.nextInt();
-              trabajadores[numTrabajador].setNumTrabajador(NumerodeTrabajador);
-              System.out.println(trabajadores[numTrabajador]);
+              Except="";
+              verifica = false;
+              do{
+                try{
+                  System.out.println("Ingresa el numero de trabajador (1-"+NumerodeTrabajadores+") que deseas editar");
+                  sActualiza=leer.nextLine();
+                  actualiza=Integer.parseInt(sActualiza);
+                  
+                    if(actualiza>0 && actualiza<=NumerodeTrabajadores){
+                      numTrabajador = actualiza-1;
+                      System.out.println("\n"+trabajadores[numTrabajador]);
+                      System.out.println("\nIngresa el nuevo numero del trabajador\n"); 
+                      do{
+                        Except="";
+                        verifica = false;
+                        try{
+                          sActualiza=leer.nextLine();
+                          int NumerodeTrabajador =Integer.parseInt(sActualiza);
+                          if(NumerodeTrabajador>=0){
+                            trabajadores[numTrabajador].setNumTrabajador(NumerodeTrabajador);
+                            System.out.println(trabajadores[numTrabajador]);
+                            Except = "Se Visualizo";
+                          }else{
+                            System.out.println("\nNumero de trabajador invalido\nIngresa un numero de trabajador correcto\n");
+                          }
+                        }catch(Exception e){
+                          System.out.println("\nNumero de trabajador invalido\n");
+                          }  
+                          verifica = Except.equals("Se Visualizo");
+                      }while(verifica != true);                 
+                    }else{
+                      System.out.println("\nNumero fuera de rango\n");
+                    }
+                  }catch(Exception e){
+                    System.out.println("\nNumero de trabajador invalido\n");
+                  }  
+              }while(verifica != true);
               break;
 
               case "6":
